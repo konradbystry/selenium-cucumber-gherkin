@@ -6,10 +6,20 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+
+import java.time.Duration;
+
 
 public class Contact_Us_Steps {
 
@@ -17,9 +27,11 @@ public class Contact_Us_Steps {
 
     @Before
     public void setup(){
-        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/main/java/drivers/chromedriver.exe");
+        //System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/main/java/drivers/chromedriver.exe");
+        WebDriverManager.chromedriver().setup();
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+        chromeOptions.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(chromeOptions);
         driver.manage().window().maximize();
     }
@@ -29,32 +41,49 @@ public class Contact_Us_Steps {
         driver.quit();
     }
 
+    public String getRandomNumber(int length){
+        return RandomStringUtils.randomNumeric(length);
+    }
+
+
     @Given("I access the webdriver university contact page")
     public void i_access_the_webdriver_university_contact_page() {
-        System.out.println("Step 1");
+        String contactPageUrl = "http://webdriveruniversity.com/Contact-Us/contactus.html";
+        driver.get(contactPageUrl);
     }
     @When("I enter a unique first name")
     public void i_enter_a_unique_first_name() {
-        System.out.println("Step 2");
+        WebElement firstNameInput = driver.findElement(By.cssSelector("input[name=\"first_name\"]"));
+        firstNameInput.sendKeys("AutoFN" + getRandomNumber(5));
     }
     @And("I enter a unique last name")
     public void i_enter_a_unique_last_name() {
-        System.out.println("Step 3");
+        WebElement lastNameInput = driver.findElement(By.cssSelector("input[name=\"last_name\"]"));
+        lastNameInput.sendKeys("AutoLN" + getRandomNumber(5));
     }
     @And("I enter a unique email address")
     public void i_enter_a_unique_email_address() {
-        System.out.println("Step 4");
+        String email = "test" + getRandomNumber(5) + "@example.com";
+        WebElement emailInput = driver.findElement(By.cssSelector("input[name=\"email\"]"));
+        emailInput.sendKeys(email);
     }
     @And("I enter a unique comment")
     public void i_enter_a_unique_comment() {
-        System.out.println("Step 5");
+        WebElement commentTextarea = driver.findElement(By.cssSelector("textarea[name=\"message\"]"));
+        commentTextarea.sendKeys("AutoC" + getRandomNumber(5));
     }
     @And("I click on the submit button")
     public void i_click_on_the_submit_button() {
-        System.out.println("Step 6");
+        WebElement submitButton = driver.findElement(By.cssSelector("input[value=\"SUBMIT\"]"));
+        submitButton.click();
     }
     @Then("I should be presented with a successful contact us submission message")
     public void i_should_be_presented_with_a_successful_contact_us_submission_message() {
-        System.out.println("Step 7");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        String submissionMessageTextExpected = "Thank You for your Message!";
+        WebElement submissionMessage = driver.findElement(By.cssSelector("#contact_reply > h1"));
+        wait.until(ExpectedConditions.visibilityOf(submissionMessage));
+        String submissionMessageTextActual = submissionMessage.getText();
+        Assert.assertTrue(submissionMessageTextActual.equalsIgnoreCase(submissionMessageTextExpected));
     }
 }
