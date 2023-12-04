@@ -86,4 +86,25 @@ public class Contact_Us_Steps {
         String submissionMessageTextActual = submissionMessage.getText();
         Assert.assertTrue(submissionMessageTextActual.equalsIgnoreCase(submissionMessageTextExpected));
     }
+
+    @When("I enter a specific first name {word}")
+    public void i_enter_a_specific_first_name(String firstName) {
+        WebElement firstNameInput = driver.findElement(By.cssSelector("input[name=\"first_name\"]"));
+        firstNameInput.sendKeys(firstName);
+    }
+    @When("I enter a specific last name {word}")
+    public void i_enter_a_specific_last_name(String lastName) {
+        WebElement lastNameInput = driver.findElement(By.cssSelector("input[name=\"last_name\"]"));
+        lastNameInput.sendKeys(lastName);
+    }
+    @When("I enter a specific email address {word}")
+    public void i_enter_a_specific_email_address(String email) {
+        WebElement emailInput = driver.findElement(By.cssSelector("input[name=\"email\"]"));
+        emailInput.sendKeys(email);
+    }
+    @When("I enter a specific comment {string}")
+    public void i_enter_a_specific_comment(String comment) {
+        WebElement commentTextarea = driver.findElement(By.cssSelector("textarea[name=\"message\"]"));
+        commentTextarea.sendKeys(comment);
+    }
 }
