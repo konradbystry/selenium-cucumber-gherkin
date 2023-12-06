@@ -25,7 +25,7 @@ public class Contact_Us_Steps {
 
     private WebDriver driver;
 
-    @Before
+    @Before("@contact-us")
     public void setup(){
         //System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/main/java/drivers/chromedriver.exe");
         WebDriverManager.chromedriver().setup();
@@ -36,7 +36,7 @@ public class Contact_Us_Steps {
         driver.manage().window().maximize();
     }
 
-    @After
+    @After("@contact-us")
     public void tearDown(){
         driver.quit();
     }
