@@ -4,7 +4,6 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,10 +11,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import pageObjects.Base_PO;
-
 import java.time.Duration;
 
-import static driver.DriverFactory.getDriver;
+
 
 public class Contact_Us_Steps extends Base_PO {
 
@@ -30,23 +28,23 @@ public class Contact_Us_Steps extends Base_PO {
     @When("I enter a unique first name")
     public void i_enter_a_unique_first_name() {
         WebElement firstNameInput = driver.findElement(By.cssSelector("input[name=\"first_name\"]"));
-        firstNameInput.sendKeys("AutoFN" + getRandomNumber(5));
+        sendKeys(firstNameInput, "AutoFN" + getRandomNumber(5));
     }
     @And("I enter a unique last name")
     public void i_enter_a_unique_last_name() {
         WebElement lastNameInput = driver.findElement(By.cssSelector("input[name=\"last_name\"]"));
-        lastNameInput.sendKeys("AutoLN" + getRandomNumber(5));
+        sendKeys(lastNameInput, "AutoLN" + getRandomNumber(5));
     }
     @And("I enter a unique email address")
     public void i_enter_a_unique_email_address() {
         String email = "test" + getRandomNumber(5) + "@example.com";
         WebElement emailInput = driver.findElement(By.cssSelector("input[name=\"email\"]"));
-        emailInput.sendKeys(email);
+        sendKeys(emailInput, email);
     }
     @And("I enter a unique comment")
     public void i_enter_a_unique_comment() {
         WebElement commentTextarea = driver.findElement(By.cssSelector("textarea[name=\"message\"]"));
-        commentTextarea.sendKeys("AutoC" + getRandomNumber(5));
+        sendKeys(commentTextarea, "AutoC" + getRandomNumber(5));
     }
     @And("I click on the submit button")
     public void i_click_on_the_submit_button() {
@@ -66,21 +64,21 @@ public class Contact_Us_Steps extends Base_PO {
     @When("I enter a specific first name {word}")
     public void i_enter_a_specific_first_name(String firstName) {
         WebElement firstNameInput = driver.findElement(By.cssSelector("input[name=\"first_name\"]"));
-        firstNameInput.sendKeys(firstName);
+        sendKeys(firstNameInput, firstName);
     }
     @When("I enter a specific last name {word}")
     public void i_enter_a_specific_last_name(String lastName) {
         WebElement lastNameInput = driver.findElement(By.cssSelector("input[name=\"last_name\"]"));
-        lastNameInput.sendKeys(lastName);
+        sendKeys(lastNameInput, lastName);
     }
     @When("I enter a specific email address {word}")
     public void i_enter_a_specific_email_address(String email) {
         WebElement emailInput = driver.findElement(By.cssSelector("input[name=\"email\"]"));
-        emailInput.sendKeys(email);
+        sendKeys(emailInput, email);
     }
     @When("I enter a specific comment {string}")
     public void i_enter_a_specific_comment(String comment) {
         WebElement commentTextarea = driver.findElement(By.cssSelector("textarea[name=\"message\"]"));
-        commentTextarea.sendKeys(comment);
+        sendKeys(commentTextarea, comment);
     }
 }

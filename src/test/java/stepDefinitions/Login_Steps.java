@@ -21,12 +21,12 @@ public class Login_Steps extends Base_PO {
     @When("I enter a username {word}")
     public void i_enter_a_username(String username) {
         WebElement loginInput = driver.findElement(By.id("text"));
-        loginInput.sendKeys(username);
+        sendKeys(loginInput, username);
     }
     @When("I enter a password {word}")
     public void i_enter_a_password(String password) {
         WebElement passwordInput = driver.findElement(By.id("password"));
-        passwordInput.sendKeys(password);
+        sendKeys(passwordInput, password);
     }
     @When("I click on the login button")
     public void i_click_on_the_login_button() {
