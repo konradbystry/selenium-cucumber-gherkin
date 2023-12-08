@@ -11,24 +11,21 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import pageObjects.Base_PO;
+
 import java.time.Duration;
 
 import static driver.DriverFactory.getDriver;
 
-public class Contact_Us_Steps {
+public class Contact_Us_Steps extends Base_PO {
 
     private WebDriver driver = getDriver();
-
-
-    public String getRandomNumber(int length){
-        return RandomStringUtils.randomNumeric(length);
-    }
 
 
     @Given("I access the webdriver university contact page")
     public void i_access_the_webdriver_university_contact_page() {
         String contactPageUrl = "http://webdriveruniversity.com/Contact-Us/contactus.html";
-        driver.get(contactPageUrl);
+        navigateTo_URL(contactPageUrl);
     }
     @When("I enter a unique first name")
     public void i_enter_a_unique_first_name() {
