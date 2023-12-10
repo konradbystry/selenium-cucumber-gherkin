@@ -35,4 +35,10 @@ public class Base_PO {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
         wait.until(ExpectedConditions.elementToBeClickable(webElement)).sendKeys(textToType);
     }
+
+    public void waitForWebElementAndClick(WebElement webElement){
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(webElement)).click();
+
+    }
 }
