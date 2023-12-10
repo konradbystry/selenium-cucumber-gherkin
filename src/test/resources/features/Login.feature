@@ -5,6 +5,7 @@
     Background:
       Given I access the webdriver university login page
 
+      @success-login
     Scenario: Validate Successful Login
       When I enter a username webdriver
       And I enter a password webdriver123
