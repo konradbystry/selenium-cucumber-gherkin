@@ -26,8 +26,13 @@ public class Base_PO {
         return RandomStringUtils.randomNumeric(length);
     }
 
-    public void sendKeys(WebElement webElement, String textTotype){
+    public void sendKeys(By by, String textToType){
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.elementToBeClickable(webElement)).sendKeys(textTotype);
+        wait.until(ExpectedConditions.elementToBeClickable(by)).sendKeys(textToType);
+    }
+
+    public void sendKeys(WebElement webElement, String textToType){
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(webElement)).sendKeys(textToType);
     }
 }
