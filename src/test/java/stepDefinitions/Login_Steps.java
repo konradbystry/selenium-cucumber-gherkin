@@ -36,21 +36,16 @@ public class Login_Steps extends Base_PO {
     }
     @Then("I should be presented with a successful login message")
     public void i_should_be_presented_with_a_successful_login_message() {
-        String successfulLoginMessageExpected = "validation succeeded";
-        String successfulLoginMessageActual = driver.switchTo().alert().getText();
-        Assert.assertEquals(successfulLoginMessageActual, successfulLoginMessageExpected);
+        login_po.validate_SuccessfulLogin_Message();
     }
 
     @Then("I should be presented with a unsuccessful login message")
     public void i_should_be_presented_with_a_unsuccessful_login_message() {
-        String successfulLoginMessageExpected = "validation failed";
-        String successfulLoginMessageActual = driver.switchTo().alert().getText();
-        Assert.assertEquals(successfulLoginMessageActual, successfulLoginMessageExpected);
+        login_po.validate_UnsuccessfulLogin_Message();
     }
 
     @Then("I should be presented with the following validation message {string}")
     public void i_should_be_presented_with_the_following_validation_message(String expectedMessage) {
-        String successfulLoginMessageActual = driver.switchTo().alert().getText();
-        Assert.assertEquals(successfulLoginMessageActual, expectedMessage);
+        login_po.validate_Login_Message(expectedMessage);
     }
 }
