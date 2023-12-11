@@ -32,4 +32,16 @@ public class Login_PO extends Base_PO{
     public void clickOn_Login_Button(){
         waitForWebElementAndClick(login_Button);
     }
+
+    public void validate_SuccessfulLogin_Message(){
+        waitForAlertAndValidateText("validation succeeded");
+    }
+
+    public void validate_UnsuccessfulLogin_Message(){
+        waitForAlertAndValidateText("validation failed");
+    }
+
+    public void validate_Login_Message(String message){
+        waitForAlertAndValidateText(message);
+    }
 }
