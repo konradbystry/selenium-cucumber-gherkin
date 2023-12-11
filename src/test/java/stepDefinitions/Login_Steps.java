@@ -8,9 +8,7 @@ import org.testng.Assert;
 import pageObjects.Base_PO;
 import pageObjects.Login_PO;
 
-public class Login_Steps extends Base_PO {
-
-    private WebDriver driver = getDriver();
+public class Login_Steps {
 
     private Login_PO login_po;
 

@@ -12,9 +12,7 @@ import java.time.Duration;
 
 
 
-public class Contact_Us_Steps extends Base_PO {
-
-    private WebDriver driver = getDriver();
+public class Contact_Us_Steps {
 
     private Contac_Us_PO contac_us_po;
     public Contact_Us_Steps (Contac_Us_PO contac_us_po){
