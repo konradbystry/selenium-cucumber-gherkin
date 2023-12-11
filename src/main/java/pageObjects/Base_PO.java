@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import utils.Global_Vars;
 
 import java.time.Duration;
 
@@ -40,19 +41,19 @@ public class Base_PO {
     }
 
     public void waitForWebElementAndClick(WebElement webElement){
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_EXPLICIT_WAIT_TIME));
         wait.until(ExpectedConditions.elementToBeClickable(webElement)).click();
     }
 
     public void waitForAlertAndValidateText(String expectedText){
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_EXPLICIT_WAIT_TIME));
         wait.until(ExpectedConditions.alertIsPresent());
         String alertMessageText = getDriver().switchTo().alert().getText();
         Assert.assertEquals(alertMessageText, expectedText);
     }
 
     public void waitForWebElementToBeVisible(WebElement webElement){
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(Global_Vars.DEFAULT_EXPLICIT_WAIT_TIME));
         wait.until(ExpectedConditions.visibilityOf(webElement));
     }
 }
